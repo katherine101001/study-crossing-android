@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/classes_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_yellow">
+
+    <LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/wood_brown"
+        android:elevation="3dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_classes"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@color/wood_brown"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="6dp"
+                android:paddingEnd="14dp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="STAFF ROOM"
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:textColor="#FFE0B2"
+                        android:letterSpacing="0.22"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Classes"
+                        android:textSize="19dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_add_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:background="@drawable/shape_btn_green"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="16dp"
+                    android:paddingTop="7dp"
+                    android:paddingBottom="9dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:elevation="3dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="+ "
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="New Class"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/deep_wood">
+        </View>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_empty_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No classes yet. Tap + New Class to open one!"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/wood_brown"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
+        android:fontFamily="@font/nunito_bold">
+    </TextView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_classes"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:paddingTop="6dp"
+        android:paddingBottom="14dp"
+        android:clipToPadding="false">
+    </androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>

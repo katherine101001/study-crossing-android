@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/badges_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_archive_planks">
+<LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/my_green"
+        android:elevation="3dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_badges"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@color/my_green"
+            app:contentInsetStart="0dp"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="12dp"
+                android:paddingEnd="18dp">
+
+                <ImageView
+                    android:id="@+id/btn_back"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_back_chevron"
+                    android:scaleType="fitCenter"
+                    android:padding="4dp"
+                    android:background="@drawable/shape_btn_icon_badge"
+                    android:layout_marginEnd="10dp">
+                </ImageView>
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:layout_marginEnd="12dp"
+                    android:elevation="2dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_npc_owl_normal"
+                        android:scaleType="fitCenter"
+                        android:padding="3dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="TROPHY HALL"
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:textColor="#DCEDC8"
+                        android:letterSpacing="0.22"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="My Badges"
+                        android:textSize="19dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_badge_shield"
+                    android:scaleType="fitCenter">
+                </ImageView>
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/deep_wood">
+        </View>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="30dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:layout_marginTop="6dp"
+                    android:elevation="6dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_npc_owl_normal"
+                        android:scaleType="fitCenter"
+                        android:padding="4dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_bubble_tail_left"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="-4dp"
+                    android:elevation="3dp">
+                </ImageView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_dialogue_bubble"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="11dp"
+                    android:elevation="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Owl says..."
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/wood_brown"
+                        android:letterSpacing="0.08"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Hoo-hoo! Splendid trophies — pray, behold your fine achievements!"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_wood"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/shape_display_case"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="18dp"
+                android:elevation="5dp"
+                android:layout_marginBottom="18dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="14dp">
+
+                    <FrameLayout
+                        android:layout_width="44dp"
+                        android:layout_height="44dp"
+                        android:background="@drawable/shape_grade_halo"
+                        android:layout_marginEnd="12dp"
+                        android:elevation="2dp">
+
+                        <ImageView
+                            android:layout_width="28dp"
+                            android:layout_height="28dp"
+                            android:layout_gravity="center"
+                            android:src="@drawable/ic_grade_star"
+                            android:scaleType="fitCenter">
+                        </ImageView>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BADGE COLLECTION"
+                            android:textSize="9dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/wood_brown"
+                            android:letterSpacing="0.18"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Your Progress"
+                            android:textSize="16dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/deep_wood"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_progress_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 / 5"
+                        android:textSize="22dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gold_badge"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="14dp"
+                    android:background="@drawable/shape_progress_track_gold">
+
+                    <View
+                        android:id="@+id/view_progress_fill"
+                        android:layout_width="0dp"
+                        android:layout_height="14dp"
+                        android:background="@drawable/shape_progress_fill_gold">
+                    </View>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_progress_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Complete quests to earn badges!"
+                    android:textSize="11dp"
+                    android:textColor="@color/wood_brown"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nunito_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_section_plaque"
+                android:paddingStart="12dp"
+                android:paddingEnd="14dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="7dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginBottom="12dp"
+                android:elevation="2dp">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_pin_yellow"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="8dp">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="All Achievements"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:letterSpacing="0.08"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_badge_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

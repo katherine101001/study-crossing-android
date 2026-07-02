@@ -1,0 +1,1337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingStart="12dp"
+    android:paddingEnd="12dp"
+    android:paddingTop="8dp"
+    android:paddingBottom="6dp"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+<TextView
+        android:id="@+id/tv_game_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mini-Game Area"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/cream_paper"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/shape_wood_plaque"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="7dp"
+        android:letterSpacing="0.1"
+        android:elevation="3dp"
+        android:fontFamily="@font/fredoka_bold">
+    </TextView>
+
+    <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+
+    <LinearLayout
+        android:id="@+id/ll_math_section"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- question card weight从0.4调到0.45, 题目区拉长一点, 滚轮那边收0.55 -->
+        <!-- ribbon在上层overlay挡住顶上, ScrollView加topMargin把题目往中间挤 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.45"
+            android:background="@drawable/shape_paper_card"
+            android:elevation="4dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:fillViewport="true"
+                android:scrollbars="vertical"
+                android:fadeScrollbars="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_math_question"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="40  +  5  =  ?"
+                        android:textSize="28dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/ink_brown"
+                        android:gravity="center"
+                        android:lineSpacingExtra="4dp"
+                        android:letterSpacing="0.02"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+            <!-- ribbon "YOUR QUESTION" 飘在card顶上, elevation高一点盖住text -->
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:background="@drawable/shape_math_ribbon"
+                android:elevation="3dp"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="6dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@drawable/ic_math_scroll"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="7dp">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="YOUR QUESTION"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:letterSpacing="0.16"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="10dp"></View>
+
+        <!-- vault cabinet, weight 0.55, 滚轮区稍微收一点 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.55"
+            android:background="@drawable/shape_slot_cabinet"
+            android:padding="6dp">
+
+            <!-- dark strip的margin之前10/18, 改成6/10让strip更长一点 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_slot_reel_bg"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="10dp">
+            </FrameLayout>
+            <!-- slot reel container: padding 6/8时digit window超出dark strip一点 -->
+            <!-- 改成10/14, reel缩一点fit在strip里面 -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingStart="32dp"
+                android:paddingEnd="32dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="14dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/slot_frame_1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_slot_reel_window"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/slot_prev_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="9"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_digit_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/deep_wood"
+                                android:gravity="center"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginBottom="-2dp"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_next_1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <View android:layout_width="8dp" android:layout_height="match_parent"></View>
+
+                    <FrameLayout
+                        android:id="@+id/slot_frame_2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_slot_reel_window"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/slot_prev_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="9"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_digit_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/deep_wood"
+                                android:gravity="center"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginBottom="-2dp"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_next_2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                    <View android:layout_width="8dp" android:layout_height="match_parent"></View>
+
+                    <FrameLayout
+                        android:id="@+id/slot_frame_3"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_slot_reel_window"
+                        android:padding="4dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/slot_prev_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="9"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_digit_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="24dp"
+                                android:textStyle="bold"
+                                android:textColor="@color/deep_wood"
+                                android:gravity="center"
+                                android:layout_marginTop="-2dp"
+                                android:layout_marginBottom="-2dp"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                            <TextView
+                                android:id="@+id/slot_next_3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textSize="12dp"
+                                android:textStyle="bold"
+                                android:textColor="#886D4C41"
+                                android:gravity="center"
+                                android:fontFamily="@font/fredoka_bold">
+                            </TextView>
+
+                        </LinearLayout>
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_drag_hint"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="6dp">
+            </ImageView>
+
+            <TextView
+                android:id="@+id/tv_drag_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Drag each reel up or down to set your digits!"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/cream_paper"
+                android:shadowColor="#88000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:fontFamily="@font/nunito_bold">
+            </TextView>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_math_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/shape_feedback_pill_green"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="6dp"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_english_section"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center_horizontal">
+<FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/shape_paper_card"
+            android:elevation="5dp">
+
+            <!-- english paper card内padding改小一点, 给question sentence多点space -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp">
+
+                <FrameLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_english_ribbon"
+                    android:elevation="4dp"
+                    android:paddingStart="18dp"
+                    android:paddingEnd="18dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="6dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@drawable/ic_postage_stamp"
+                            android:scaleType="fitCenter"
+                            android:layout_marginEnd="7dp">
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="FILL IN THE BLANK"
+                            android:textSize="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:letterSpacing="0.14"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginBottom="10dp"
+                    android:fillViewport="true"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_question_sentence"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textSize="19dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/ink_brown"
+                            android:gravity="center"
+                            android:lineSpacingExtra="5dp"
+                            android:fontFamily="@font/nunito_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/tv_drop_zone"
+                    android:layout_width="match_parent"
+                    android:layout_height="66dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:text="Drop word here"
+                    android:textSize="17dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/deep_wood"
+                    android:gravity="center"
+                    android:background="@drawable/shape_dropzone_v2"
+                    android:elevation="6dp"
+                    android:fontFamily="@font/nunito_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_section_plaque"
+            android:paddingStart="12dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="7dp"
+            android:elevation="2dp">
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:src="@drawable/ic_drag_hint"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="7dp">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DRAG A WORD INTO THE BLANK"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:letterSpacing="0.14"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+
+        <FrameLayout
+            android:id="@+id/meadow_track"
+            android:layout_width="match_parent"
+            android:layout_height="106dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            android:clipChildren="true"
+            android:clipToPadding="false"
+            android:background="@drawable/shape_meadow_track"
+            android:elevation="3dp">
+
+            <FrameLayout
+                android:id="@+id/word_track"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+            </FrameLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="10dp"></View>
+
+        <TextView
+            android:id="@+id/tv_answer_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_feedback_pill_green"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="7dp"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_gk_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_gk_ribbon"
+            android:elevation="4dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="6dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <ImageView
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:src="@drawable/ic_grade_star"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="7dp">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tv_game_placeholder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WHAT IS THIS DISCOVERY?"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:letterSpacing="0.14"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+<FrameLayout
+            android:id="@+id/fl_fossil_area"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_excavation_pit"
+            android:padding="12dp"
+            android:elevation="6dp">
+
+            <ImageView
+                android:id="@+id/iv_fossil_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_gk_fossil"
+                android:scaleType="fitCenter"
+                android:padding="18dp">
+            </ImageView>
+
+            <com.example.assignment1.ScratchView
+                android:id="@+id/scratch_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </com.example.assignment1.ScratchView>
+<LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_pill_translucent"
+                android:paddingStart="10dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="4dp"
+                android:paddingBottom="5dp"
+                android:elevation="3dp">
+
+                <ImageView
+                    android:layout_width="13dp"
+                    android:layout_height="13dp"
+                    android:src="@drawable/ic_brush_hint"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="6dp">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/tv_fossil_hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Brush away the dirt and look closely."
+                    android:textSize="11dp"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/nunito_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="10dp"></View>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/shape_section_plaque"
+            android:paddingStart="12dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="7dp"
+            android:elevation="2dp">
+
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="13dp"
+                android:src="@drawable/ic_pin_yellow"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="7dp">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EVIDENCE TAGS — DRAG TO THE PIT"
+                android:textSize="10dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:letterSpacing="0.12"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+        <LinearLayout
+            android:id="@+id/ll_answer_tags"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipChildren="false"
+            android:clipToPadding="false">
+
+            <TextView
+                android:id="@+id/tag_1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="Ancient Fossil"
+                android:textSize="11dp"
+                android:textColor="@color/deep_wood"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:lineSpacingExtra="-1dp"
+                android:fontFamily="@font/fredoka_bold"
+                android:background="@drawable/shape_evidence_label"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="14dp"
+                android:elevation="3dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tag_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="Living Plant"
+                android:textSize="11dp"
+                android:textColor="@color/deep_wood"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:lineSpacingExtra="-1dp"
+                android:fontFamily="@font/fredoka_bold"
+                android:background="@drawable/shape_evidence_label"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="14dp"
+                android:elevation="3dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tag_3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="Space Rock"
+                android:textSize="11dp"
+                android:textColor="@color/deep_wood"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:lineSpacingExtra="-1dp"
+                android:fontFamily="@font/fredoka_bold"
+                android:background="@drawable/shape_evidence_label"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="14dp"
+                android:elevation="3dp">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tag_4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_margin="4dp"
+                android:text="Sea Shell"
+                android:textSize="11dp"
+                android:textColor="@color/deep_wood"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:maxLines="2"
+                android:lineSpacingExtra="-1dp"
+                android:fontFamily="@font/fredoka_bold"
+                android:background="@drawable/shape_evidence_label"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="14dp"
+                android:elevation="3dp">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- MC section: 之前用ScrollView+固定dp高度, 在不同phone上要么scroll要么塞不下 -->
+    <!-- 改成纯weight layout, question card和tile row按比例分available space, 不scroll -->
+    <LinearLayout
+        android:id="@+id/ll_mc_section"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <!-- quick quiz question card weight加到1, tile button那边收小一点 -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_paper_card"
+            android:elevation="3dp"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <FrameLayout
+                    android:id="@+id/fl_mc_ribbon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/shape_field_guide_ribbon"
+                    android:elevation="3dp"
+                    android:paddingStart="22dp"
+                    android:paddingEnd="22dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="7dp"
+                    android:layout_marginBottom="10dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/ic_grade_star"
+                            android:scaleType="fitCenter"
+                            android:layout_marginEnd="8dp">
+                        </ImageView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="QUICK QUIZ"
+                            android:textSize="12dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/white"
+                            android:letterSpacing="0.18"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </FrameLayout>
+
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:fillViewport="true"
+                    android:scrollbars="vertical"
+                    android:fadeScrollbars="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/tv_mc_prompt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Pick the right answer"
+                            android:textSize="22dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/ink_brown"
+                            android:gravity="center"
+                            android:lineSpacingExtra="4dp"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </ScrollView>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+
+        <!-- tile row weight=0.7, button比之前小, question card多点space -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/tile_mc_a"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="A"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_a_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tile_mc_b"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="B"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_b_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:id="@+id/tile_mc_c"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="C"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_c_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tile_mc_d"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="D"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_d_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- 第3排, 给5-6 option的题用 (Synonyms 6选项/Transition Words 5选项那种) -->
+        <!-- 4选项题这排会GONE掉, weight就自动还给上面两排 -->
+        <View
+            android:id="@+id/mc_row3_spacer"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:visibility="gone">
+        </View>
+
+        <LinearLayout
+            android:id="@+id/mc_row3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/tile_mc_e"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="E"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_e_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/tile_mc_f"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="4dp"
+                android:background="@drawable/sel_mc_tile"
+                android:padding="12dp">
+
+                <TextView
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:text="F"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/shape_letter_stamp"
+                    android:layout_marginBottom="8dp"
+                    android:shadowColor="#88000000"
+                    android:shadowDx="0"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_mc_f_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/ink_brown"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_mc_feedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textSize="12dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="4dp"
+            android:background="@drawable/shape_feedback_pill_green"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="6dp"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <!-- Done button: 之前56dp太厚, 50dp更紧凑给question留space -->
+    <!-- MC game会程序里GONE掉这个button -->
+    <LinearLayout
+        android:id="@+id/ll_btn_done"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="2dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingBottom="6dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="5dp"
+        android:background="@drawable/sel_btn_green">
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_stamp_confirm"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="10dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/btn_done"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Submit Answer"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

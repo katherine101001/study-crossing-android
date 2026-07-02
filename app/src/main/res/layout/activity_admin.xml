@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/admin_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_yellow">
+
+    <LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/wood_brown"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        android:elevation="2dp">
+
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/shape_avatar_circle"
+            android:layout_marginEnd="12dp"
+            android:elevation="2dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_npc_owl_normal"
+                android:scaleType="fitCenter"
+                android:padding="3dp">
+            </ImageView>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ADMIN OFFICE"
+                android:textSize="9dp"
+                android:textStyle="bold"
+                android:textColor="#FFE0B2"
+                android:letterSpacing="0.22"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_admin_hello"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Resident Services"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textColor="@color/bg_yellow"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="What would you like to manage today?"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="@color/wood_brown"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/nunito_bold">
+            </TextView>
+
+            <View android:layout_width="match_parent" android:layout_height="16dp"></View>
+
+            <LinearLayout
+                android:id="@+id/card_students"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp">
+
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_avatar_cat"
+                        android:scaleType="fitCenter"
+                        android:padding="6dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manage Students"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_wood"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_student_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 residents on the island"
+                        android:textSize="12dp"
+                        android:textColor="@color/wood_brown"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cork_tan"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+            <LinearLayout
+                android:id="@+id/card_teachers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp">
+
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_npc_owl_normal"
+                        android:scaleType="fitCenter"
+                        android:padding="8dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manage Teachers"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_wood"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_teacher_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 teachers"
+                        android:textSize="12dp"
+                        android:textColor="@color/wood_brown"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cork_tan"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+            <LinearLayout
+                android:id="@+id/card_lessons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp">
+
+                <FrameLayout
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_post_handbook_open"
+                        android:scaleType="fitCenter"
+                        android:padding="10dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Manage Lessons"
+                        android:textSize="18dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_wood"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/tv_lesson_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0 learning materials"
+                        android:textSize="12dp"
+                        android:textColor="@color/wood_brown"
+                        android:layout_marginTop="2dp"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="30dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/cork_tan"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"></View>
+
+            <View android:layout_width="match_parent" android:layout_height="22dp"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_logout_btn"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp"
+                android:background="@drawable/sel_btn_brown">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_btn_back"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="10dp">
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Log Out"
+                    android:textSize="16dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,753 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/edit_lesson_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_yellow">
+
+    <LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/wood_brown"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        android:elevation="2dp">
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_back_chevron"
+            android:scaleType="fitCenter"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginEnd="12dp">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_post_handbook_open"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="12dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_screen_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Add Lesson"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:textColor="@color/bg_yellow"
+            android:letterSpacing="0.02"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="18dp"
+            android:paddingBottom="22dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:elevation="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LESSON TITLE"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="e.g. Queen of Fruits"
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GAME TYPE"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
+
+                    <TextView
+                        android:id="@+id/chip_game_mcq"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Choice"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_pill_brown"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginEnd="3dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/chip_game_slot"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Slot"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_pill_brown"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:alpha="0.45"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/chip_game_word"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Word"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_pill_brown"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginEnd="3dp"
+                        android:alpha="0.45"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/chip_game_fossil"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dig"
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_pill_brown"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginStart="3dp"
+                        android:alpha="0.45"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SUBJECT"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/chip_math"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Math"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_subject_chip_math"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginEnd="4dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/chip_english"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="English"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_subject_chip_english"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp"
+                        android:alpha="0.45"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:id="@+id/chip_gk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="GK"
+                        android:textSize="13dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:background="@drawable/shape_subject_chip_gk"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:layout_marginStart="4dp"
+                        android:alpha="0.45"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LESSON IMAGE"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="160dp"
+                    android:background="@drawable/shape_input_passport">
+
+                    <TextView
+                        android:id="@+id/tv_no_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="No image uploaded yet"
+                        android:textSize="12dp"
+                        android:textColor="#A1887F"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                    <ImageView
+                        android:id="@+id/iv_preview"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        android:padding="3dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="8dp"></View>
+
+                <LinearLayout
+                    android:id="@+id/ll_pick_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:background="@drawable/sel_btn_brown"
+                    android:paddingTop="11dp"
+                    android:paddingBottom="13dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:elevation="3dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_share_envelope"
+                        android:scaleType="fitCenter"
+                        android:layout_marginEnd="8dp">
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Upload Image"
+                        android:textSize="14dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="LESSON CONTENT (what students read)"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.12"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_lesson_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type the teaching notes for this lesson..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="textMultiLine"
+                    android:minLines="4"
+                    android:gravity="top"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SHORT DESCRIPTION (shows in list)"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.12"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="One line summary of this lesson..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="textMultiLine"
+                    android:minLines="2"
+                    android:gravity="top"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginEnd="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NPC NAME"
+                            android:textSize="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/wood_brown"
+                            android:letterSpacing="0.14"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                        <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                        <EditText
+                            android:id="@+id/et_npc_name"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="e.g. Blathers"
+                            android:background="@drawable/shape_input_passport"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp"
+                            android:textSize="14dp"
+                            android:textColor="@color/ink_brown"
+                            android:textColorHint="#A1887F"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:fontFamily="@font/nunito_bold">
+                        </EditText>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:layout_marginStart="6dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NPC LINE"
+                            android:textSize="10dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/wood_brown"
+                            android:letterSpacing="0.14"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                        <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                        <EditText
+                            android:id="@+id/et_npc_dialogue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="e.g. Go dig!"
+                            android:background="@drawable/shape_input_passport"
+                            android:paddingStart="12dp"
+                            android:paddingEnd="12dp"
+                            android:paddingTop="11dp"
+                            android:paddingBottom="11dp"
+                            android:textSize="14dp"
+                            android:textColor="@color/ink_brown"
+                            android:textColorHint="#A1887F"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:fontFamily="@font/nunito_bold">
+                        </EditText>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="16dp"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:elevation="6dp">
+
+                <TextView
+                    android:id="@+id/tv_question_section"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QUESTION SETUP"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/deep_wood"
+                    android:letterSpacing="0.16"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="@color/cork_tan"
+                    android:layout_marginTop="8dp">
+                </View>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:id="@+id/tv_question_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="QUESTION"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_question"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type the question or sentence..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="textMultiLine"
+                    android:minLines="2"
+                    android:gravity="top"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:id="@+id/tv_answer_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CORRECT ANSWER"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_answer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="The correct answer..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="15dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <LinearLayout
+                    android:id="@+id/ll_options_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="OPTIONS (separate with commas)"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/wood_brown"
+                        android:letterSpacing="0.12"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                    <EditText
+                        android:id="@+id/et_options"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="e.g. in, at, on, by"
+                        android:background="@drawable/shape_input_passport"
+                        android:paddingStart="14dp"
+                        android:paddingEnd="14dp"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="12dp"
+                        android:textSize="15dp"
+                        android:textColor="@color/ink_brown"
+                        android:textColorHint="#A1887F"
+                        android:inputType="textMultiLine"
+                        android:minLines="2"
+                        android:gravity="top"
+                        android:fontFamily="@font/nunito_bold">
+                    </EditText>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_question_hint"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tip: these are the answer keys for the mini-game."
+                    android:textSize="11dp"
+                    android:textColor="@color/wood_brown"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/nunito_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="22dp"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_save_btn"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp"
+                android:background="@drawable/sel_btn_green">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_stamp_confirm"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="10dp">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/btn_save"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save Lesson"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="12dp"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_delete_btn"
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="gone"
+                android:elevation="6dp"
+                android:background="@drawable/shape_pill_red">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Delete Lesson"
+                    android:textSize="15dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

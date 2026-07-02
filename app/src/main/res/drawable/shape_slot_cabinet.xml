@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Wood cabinet frame for the vault slot machine — replaces bg_slot_machine_cabinet.png -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+        <shape android:shape="rectangle">
+            <solid android:color="#5D4037"/>
+            <corners android:radius="20dp"/>
+        </shape>
+    </item>
+<item android:bottom="2dp" android:left="3dp" android:right="3dp" android:top="0dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#9B7B6B"
+                android:endColor="#7D5F4E"
+                android:angle="270"/>
+            <corners android:radius="18dp"/>
+            <stroke android:width="1.5dp" android:color="#8D6E63"/>
+        </shape>
+    </item>
+<item android:bottom="3dp" android:left="8dp" android:right="8dp" android:top="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF"/>
+            <stroke android:width="0.5dp" android:color="#33FFFFFF"/>
+            <corners android:radius="14dp"/>
+        </shape>
+    </item>
+</layer-list>

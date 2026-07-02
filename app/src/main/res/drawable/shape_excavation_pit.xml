@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Themed wooden dig-site frame for the Discovery pit.
+     Nested rounded corners shrink inward layer by layer so the dirt
+     (clipped to a matching 10dp radius in ScratchView) sits cleanly
+     inside the frame's inner soil rim. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:top="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#33000000"/>
+            <corners android:radius="18dp"/>
+        </shape>
+    </item>
+<item android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <gradient
+                android:startColor="#6E4F3F"
+                android:endColor="#4E342E"
+                android:angle="270"/>
+            <corners android:radius="18dp"/>
+            <stroke android:width="1.5dp" android:color="#3A211B"/>
+        </shape>
+    </item>
+<item android:bottom="3dp" android:top="2dp" android:start="2dp" android:end="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF"/>
+            <stroke android:width="1dp" android:color="#A88770"/>
+            <corners android:radius="16dp"/>
+        </shape>
+    </item>
+
+    <!-- 4) Inner soil rim - the recessed lip just outside the dirt area.
+            Matches the 12dp padding on fl_fossil_area so the soil overlay
+            (also rounded to 10dp via ScratchView clip) tucks neatly in. -->
+    <item android:top="9dp" android:bottom="12dp" android:start="9dp" android:end="9dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#6B4A2F"/>
+            <corners android:radius="12dp"/>
+            <stroke android:width="1.5dp" android:color="#3A2418"/>
+        </shape>
+    </item>
+
+</layer-list>

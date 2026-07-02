@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/splash_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:background="@drawable/bg_sky_gradient">
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="8dp">
+
+        <ImageView
+            android:layout_width="80dp"
+            android:layout_height="36dp"
+            android:src="@drawable/shape_pill_translucent"
+            android:scaleType="fitXY"
+            android:alpha="0.35"
+            android:layout_marginEnd="12dp">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="28dp"
+            android:src="@drawable/shape_pill_translucent"
+            android:scaleType="fitXY"
+            android:alpha="0.25"
+            android:layout_marginTop="8dp">
+        </ImageView>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_splash_logo"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_splash_logo"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:elevation="8dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp">
+    </ImageView>
+
+    <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="18dp">
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_grade_star"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="6dp">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="10dp"
+            android:layout_height="10dp"
+            android:src="@drawable/ic_grade_star"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="6dp"
+            android:alpha="0.7">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:src="@drawable/ic_grade_star"
+            android:scaleType="fitCenter">
+        </ImageView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/shape_wood_plaque"
+        android:paddingStart="20dp"
+        android:paddingEnd="22dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="12dp"
+        android:elevation="4dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_coin_bell"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="10dp">
+        </ImageView>
+
+        <TextView
+            android:id="@+id/tv_splash_sub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Island Learning Adventure"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:letterSpacing="0.04"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"></View>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/bg_grass_tile"
+            android:scaleType="fitXY"
+            android:alpha="0.55">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="v 1.0  ·  by your friendly islanders"
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                android:alpha="0.7"
+                android:fontFamily="@font/patrick_hand">
+            </TextView>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</LinearLayout>

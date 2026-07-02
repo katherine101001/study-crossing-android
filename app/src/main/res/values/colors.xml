@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="my_green">#5B8C3E</color>
+    <color name="bg_yellow">#FDF9E1</color>
+    <color name="wood_brown">#8D6E63</color>
+    <color name="sky_blue">#87CEEB</color>
+<color name="cream_paper">#FFFBE9</color>
+    <color name="deep_wood">#5D4037</color>
+    <color name="cork_tan">#C8A268</color>
+    <color name="gold_badge">#F9A825</color>
+    <color name="ink_brown">#3E2723</color>
+    <color name="chip_red">#B54433</color>
+    <color name="chip_purple">#7E57C2</color>
+    <color name="chip_blue">#3D86B5</color>
+</resources>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/notice_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_archive_planks">
+
+    <!-- Notice Board: 木纹背景 + NPC气泡 + cork board上的session卡片列表 -->
+
+    <LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/my_green"
+        android:elevation="3dp">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_notice"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:background="@color/my_green"
+            app:contentInsetStartWithNavigation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingStart="18dp"
+                android:paddingEnd="18dp">
+
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:layout_marginEnd="12dp"
+                    android:elevation="2dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_npc_isabelle_happy"
+                        android:scaleType="fitCenter"
+                        android:padding="3dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="ISLAND BULLETIN"
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:textColor="#DCEDC8"
+                        android:letterSpacing="0.22"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Notice Board"
+                        android:textSize="19dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/deep_wood">
+        </View>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="14dp"
+        android:paddingEnd="14dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="10dp">
+
+        <FrameLayout
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:background="@drawable/shape_avatar_circle"
+            android:layout_marginTop="6dp"
+            android:elevation="6dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_npc_isabelle_happy"
+                android:scaleType="fitCenter"
+                android:padding="4dp">
+            </ImageView>
+
+        </FrameLayout>
+<ImageView
+            android:layout_width="16dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_bubble_tail_left"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="-4dp"
+            android:elevation="3dp">
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:background="@drawable/shape_dialogue_bubble"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="11dp"
+            android:elevation="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Isabelle says..."
+                android:textSize="9dp"
+                android:textStyle="bold"
+                android:textColor="@color/wood_brown"
+                android:letterSpacing="0.08"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+            <TextView
+                android:id="@+id/tv_npc_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Every finished quest gets pinned right here!"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:textColor="@color/deep_wood"
+                android:layout_marginTop="1dp"
+                android:fontFamily="@font/nunito_bold">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="4dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:background="@drawable/shape_wood_plaque"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="8dp"
+            android:elevation="3dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:src="@drawable/ic_pin_red"
+                android:scaleType="fitCenter"
+                android:layout_marginEnd="8dp">
+            </ImageView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pinned Sessions"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:letterSpacing="0.06"
+                android:fontFamily="@font/fredoka_bold">
+            </TextView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/cork_board"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="6dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/shape_cork_board"
+        android:elevation="5dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_tasks"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:paddingTop="10dp"
+            android:paddingBottom="14dp"
+            android:clipToPadding="true">
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/shape_pin_red"
+            android:scaleType="fitCenter"
+            android:layout_gravity="top|start"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="3dp"
+            android:rotation="-15"
+            android:elevation="2dp">
+        </ImageView>
+
+        <ImageView
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:src="@drawable/shape_pin_green"
+            android:scaleType="fitCenter"
+            android:layout_gravity="top|end"
+            android:layout_marginEnd="3dp"
+            android:layout_marginTop="3dp"
+            android:rotation="12"
+            android:elevation="2dp">
+        </ImageView>
+
+    </FrameLayout>
+<TextView
+        android:id="@+id/tv_empty_hint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="No sessions pinned yet. Go play some quests!"
+        android:textSize="12dp"
+        android:textStyle="bold"
+        android:textColor="@color/wood_brown"
+        android:gravity="center"
+        android:layout_marginTop="14dp"
+        android:visibility="gone"
+        android:fontFamily="@font/nunito_bold">
+    </TextView>
+
+    </LinearLayout>
+
+</LinearLayout>

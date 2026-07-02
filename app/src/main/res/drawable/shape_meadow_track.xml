@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Word track strip — word tags drift across a calm stream.
+     Blues are derived from @color/chip_blue (#3D86B5) to match the English theme. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+        <shape android:shape="rectangle">
+            <solid android:color="#4E8FB0"/>
+            <corners android:radius="14dp"/>
+        </shape>
+    </item>
+<item android:top="4dp" android:bottom="4dp" android:start="4dp" android:end="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#6BA6C6"/>
+            <corners android:radius="11dp"/>
+        </shape>
+    </item>
+<item android:top="22dp" android:bottom="22dp" android:start="20dp" android:end="20dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#9CC6DD"/>
+            <corners android:radius="5dp"/>
+        </shape>
+    </item>
+</layer-list>

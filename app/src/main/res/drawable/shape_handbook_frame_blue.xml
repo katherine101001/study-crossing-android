@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- English lesson image frame — blue (chip_blue) version of shape_handbook_frame. -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1E3A4A"/>
+            <corners android:radius="14dp"/>
+        </shape>
+    </item>
+<item android:bottom="4dp" android:start="2dp" android:end="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_yellow"/>
+            <corners android:radius="14dp"/>
+            <stroke android:width="3dp" android:color="@color/chip_blue"/>
+        </shape>
+    </item>
+<item android:bottom="4dp" android:top="3dp" android:left="5dp" android:right="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#00FFFFFF"/>
+            <stroke android:width="1dp" android:color="#A8CEE0"/>
+            <corners android:radius="11dp"/>
+        </shape>
+    </item>
+</layer-list>

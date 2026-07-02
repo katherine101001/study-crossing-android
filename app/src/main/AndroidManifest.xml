@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Assignment1">
+
+        <activity
+            android:name=".SplashActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".TeacherActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".TeacherClassesActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".TeacherClassStudentsActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminStudentsActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminTeachersActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminEditStudentActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminLessonsActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".AdminEditLessonActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".ProfileActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".NoticeBoardActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".StudyActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name=".RewardActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".QuestArchiveActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".LessonNoteActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".BadgesActivity"
+            android:exported="false">
+        </activity>
+
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false">
+        </activity>
+
+    </application>
+
+</manifest>

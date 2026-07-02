@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/login_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_yellow">
+
+    <LinearLayout
+        android:id="@+id/app_bar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/wood_brown"
+        android:paddingStart="18dp"
+        android:paddingEnd="18dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:gravity="center_vertical"
+        android:elevation="2dp">
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:src="@drawable/ic_id_tag"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="12dp">
+        </ImageView>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Island Gate"
+            android:textSize="22dp"
+            android:textStyle="bold"
+            android:textColor="@color/bg_yellow"
+            android:letterSpacing="0.02"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LOG IN"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFE0B2"
+            android:letterSpacing="0.18"
+            android:fontFamily="@font/fredoka_bold">
+        </TextView>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="18dp"
+            android:paddingEnd="18dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="22dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginStart="14dp"
+                android:layout_marginEnd="14dp">
+
+                <FrameLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:background="@drawable/shape_avatar_circle"
+                    android:layout_marginTop="6dp"
+                    android:elevation="6dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/ic_npc_isabelle_happy"
+                        android:scaleType="fitCenter"
+                        android:padding="4dp">
+                    </ImageView>
+
+                </FrameLayout>
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_bubble_tail_left"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="-4dp"
+                    android:elevation="3dp">
+                </ImageView>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:background="@drawable/shape_dialogue_bubble"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="11dp"
+                    android:elevation="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Isabelle says..."
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/wood_brown"
+                        android:letterSpacing="0.08"
+                        android:fontFamily="@font/fredoka_bold">
+                    </TextView>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Welcome back! Sign in to visit the island."
+                        android:textSize="12dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/deep_wood"
+                        android:layout_marginTop="1dp"
+                        android:fontFamily="@font/nunito_bold">
+                    </TextView>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/shape_passport_frame"
+                android:padding="18dp"
+                android:elevation="6dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I AM A..."
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="3">
+
+                    <LinearLayout
+                        android:id="@+id/ll_role_student"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/shape_avatar_selected"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="10dp"
+                        android:clickable="true"
+                        android:elevation="3dp"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_avatar_cat"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/shape_avatar_circle"
+                            android:padding="4dp">
+                        </ImageView>
+
+                        <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Student"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/deep_wood"
+                            android:gravity="center"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_role_teacher"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:background="@drawable/shape_avatar_card"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="10dp"
+                        android:clickable="true"
+                        android:elevation="3dp"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_npc_squirrel_normal"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/shape_avatar_circle"
+                            android:padding="4dp">
+                        </ImageView>
+
+                        <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Teacher"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/deep_wood"
+                            android:gravity="center"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_role_admin"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_marginStart="5dp"
+                        android:background="@drawable/shape_avatar_card"
+                        android:paddingTop="12dp"
+                        android:paddingBottom="10dp"
+                        android:clickable="true"
+                        android:elevation="3dp"
+                        android:focusable="true">
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_npc_owl_normal"
+                            android:scaleType="fitCenter"
+                            android:background="@drawable/shape_avatar_circle"
+                            android:padding="4dp">
+                        </ImageView>
+
+                        <View android:layout_width="match_parent" android:layout_height="6dp"></View>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Admin"
+                            android:textSize="13dp"
+                            android:textStyle="bold"
+                            android:textColor="@color/deep_wood"
+                            android:gravity="center"
+                            android:fontFamily="@font/fredoka_bold">
+                        </TextView>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View android:layout_width="match_parent" android:layout_height="16dp"></View>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.5dp"
+                    android:background="@color/cork_tan">
+                </View>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="USERNAME"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type your username..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+                <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="PASSWORD"
+                    android:textSize="10dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/wood_brown"
+                    android:letterSpacing="0.18"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+                <View android:layout_width="match_parent" android:layout_height="4dp"></View>
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Type your password..."
+                    android:background="@drawable/shape_input_passport"
+                    android:paddingStart="14dp"
+                    android:paddingEnd="14dp"
+                    android:paddingTop="12dp"
+                    android:paddingBottom="12dp"
+                    android:textSize="16dp"
+                    android:textColor="@color/ink_brown"
+                    android:textColorHint="#A1887F"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nunito_bold">
+                </EditText>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="22dp"></View>
+
+            <LinearLayout
+                android:id="@+id/ll_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="62dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingBottom="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:elevation="6dp"
+                android:background="@drawable/sel_btn_green">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_confirm_glove_stamp"
+                    android:scaleType="fitCenter"
+                    android:layout_marginEnd="10dp">
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/btn_login"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Enter the Island"
+                    android:textSize="18dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="14dp"></View>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="New to the island?"
+                    android:textSize="12dp"
+                    android:textColor="@color/wood_brown"
+                    android:fontFamily="@font/nunito_bold">
+                </TextView>
+
+                <TextView
+                    android:id="@+id/tv_go_register"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Make a Passport"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/my_green"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold">
+                </TextView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

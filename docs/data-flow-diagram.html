@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Study Crossing — Data Flow Diagram (Current) &amp; Design Comparison</title>
+<style>
+  :root{
+    --green:#78B159; --wood:#8D6E63; --deep:#4E342E; --yellow:#FDF9E1;
+    --ink:#2b2b2b; --line:#d9cfa8; --card:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:0 0 80px; background:var(--yellow); color:var(--ink);
+    font-family:"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.55;
+  }
+  header{
+    background:var(--green); color:#fff; padding:30px 28px 26px;
+    border-bottom:5px solid var(--deep); box-shadow:0 3px 10px rgba(0,0,0,.18);
+  }
+  header h1{margin:0 0 6px; font-size:27px; letter-spacing:.3px;}
+  header p{margin:0; opacity:.95; font-size:14px;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 22px;}
+  section{
+    background:var(--card); margin:26px auto; padding:22px 26px 28px;
+    border:1px solid var(--line); border-radius:12px;
+    box-shadow:0 2px 7px rgba(0,0,0,.06); max-width:1080px;
+  }
+  h2{
+    color:var(--deep); font-size:20px; margin:2px 0 4px;
+    border-left:6px solid var(--green); padding-left:12px;
+  }
+  h2 .tag{
+    font-size:11px; font-weight:600; color:#fff; background:var(--wood);
+    border-radius:20px; padding:3px 10px; margin-left:10px; vertical-align:middle;
+    letter-spacing:.4px;
+  }
+  .sub{color:#6b6256; font-size:13.5px; margin:6px 0 16px;}
+  .fig{
+    background:#fffef8; border:1px dashed var(--line); border-radius:10px;
+    padding:16px 12px; text-align:center; overflow-x:auto;
+  }
+  .fig svg{ display:block; margin:0 auto; max-width:100%; height:auto; }
+  .caption{ text-align:center; font-style:italic; color:#6b6256; margin:10px 0 2px; font-size:12px; }
+  .caption b{ font-style:normal; color:var(--deep); }
+  .keyrow{
+    display:flex; flex-wrap:wrap; align-items:center; gap:8px 26px; font-size:12.5px; color:#5a4632;
+    background:#fbf8e8; border:1px solid var(--line); border-radius:8px; padding:10px 16px; margin:6px 0 16px;
+  }
+  .keyrow span{ display:inline-flex; align-items:center; gap:7px; }
+  .keyrow b{ color:var(--deep); }
+  table.dict{border-collapse:collapse; width:100%; font-size:13px; margin-top:8px;}
+  table.dict th,table.dict td{border:1px solid var(--line); padding:7px 10px; text-align:left; vertical-align:top;}
+  table.dict th{background:var(--green); color:#fff; font-weight:600;}
+  table.dict tr:nth-child(even){background:#fbf8e8;}
+  code{background:#f2eccf; padding:1px 6px; border-radius:5px; font-size:12.5px; color:#5a4632;}
+  .legend{
+    display:flex; flex-wrap:wrap; gap:10px 22px; font-size:13px;
+    background:#fbf8e8; border:1px solid var(--line); border-radius:8px;
+    padding:12px 16px; margin-top:14px;
+  }
+  .legend b{color:var(--deep);}
+  .legend .sym{font-family:Consolas,monospace; background:#fff; border:1px solid var(--line); padding:1px 7px; border-radius:5px;}
+  .note{font-size:12.5px; color:#6b6256; margin-top:12px; border-top:1px dotted var(--line); padding-top:10px;}
+  .quote{
+    background:#fbf8e8; border-left:5px solid var(--wood); border-radius:6px;
+    padding:12px 16px; margin:14px 0; font-size:13px; color:#5a4632; font-style:italic;
+  }
+  .quote b{font-style:normal; color:var(--deep);}
+  h3.sub-h{color:var(--deep); font-size:15.5px; margin:22px 0 4px; font-weight:600;}
+  .why{color:#3d6b27; font-weight:600;}
+  footer{text-align:center; color:#8c8270; font-size:12px; margin-top:30px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>Study Crossing — Data Flow Diagram (Current Build)</h1>
+    <p>Rebuilt DFD for the live SQLite system · Yourdon–DeMarco notation · compared against the original Software-Engineering-Report plan (May 2026)</p>
+  </div>
+</header>
+
+<!-- ============ 0 · WHY A NEW DFD ============ -->
+<section>
+  <h2>0 · Why this DFD was redrawn <span class="tag">Context</span></h2>
+  <p class="sub">The original <code>software-engineering-report.html</code> contained a DFD, but it described a system
+     that no longer matches the code. This document replaces it with a DFD of the system <b>as actually built</b>, then
+     explains every difference and the reason for it (§3 in prose, §5 as a table).</p>
+
+  <div class="quote">
+    The original report stated, word for word:
+    “The app runs entirely on-device with no network layer, <b>no database</b>, and no server… There is
+    <b>no login system</b> and <b>no admin dashboard</b> in the current design… The DFD section is <b>hypothetical</b>:
+    it assumes the mock data layer is replaced by REST endpoints and a remote database.”
+  </div>
+
+  <p class="sub">In other words, the planned DFD modelled <b>one Player</b> talking to a <b>hypothetical remote backend</b>
+     that did not exist yet. The shipped app is different on both counts: it has a <b>real, local SQLite database</b>
+     (<code>StudyCrossing.db</code>, 7 tables) and <b>three roles</b> (Student, Teacher, Admin) behind a login. The
+     diagrams below therefore document <b>real</b> data flows, not a future hypothetical.</p>
+</section>
+
+<!-- ============ 1 · CONTEXT DIAGRAM ============ -->
+<section>
+  <h2>1 · Context Diagram (Level 0) <span class="tag">Current · DFD</span></h2>
+  <p class="sub">Three external entities now interact with one system process. Drawn in <b>Yourdon–DeMarco</b> notation
+     (the same standard symbols are used throughout this document):</p>
+
+  <div class="keyrow">
+    <span><b>Key:</b></span>
+    <span><svg width="32" height="22"><rect x="2" y="3" width="28" height="16" fill="#fff" stroke="#4E342E" stroke-width="1.5"/></svg> external entity</span>
+    <span><svg width="30" height="26"><circle cx="15" cy="13" r="11" fill="#fff" stroke="#78B159" stroke-width="2"/></svg> process (numbered)</span>
+    <span><svg width="52" height="22"><line x1="3" y1="6" x2="49" y2="6" stroke="#4E342E" stroke-width="1.5"/><line x1="3" y1="16" x2="49" y2="16" stroke="#4E342E" stroke-width="1.5"/></svg> data store</span>
+    <span><svg width="46" height="14"><defs><marker id="lg" markerWidth="8" markerHeight="6" refX="7.5" refY="3" orient="auto"><polygon points="0 0,8 3,0 6" fill="#4E342E"/></marker></defs><line x1="2" y1="7" x2="34" y2="7" stroke="#4E342E" stroke-width="1.4" marker-end="url(#lg)"/></svg> data flow</span>
+  </div>
+
+  <div class="fig">
+  <svg viewBox="0 0 820 430" width="820" height="430" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+    <defs><marker id="m0" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#4E342E"/></marker></defs>
+
+    <!-- external entities (squares) -->
+    <rect x="22" y="40" width="150" height="56" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="97" y="73" text-anchor="middle" font-size="14" fill="#2b2b2b">Student</text>
+    <rect x="22" y="186" width="150" height="56" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="97" y="219" text-anchor="middle" font-size="14" fill="#2b2b2b">Teacher</text>
+    <rect x="22" y="332" width="150" height="56" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="97" y="365" text-anchor="middle" font-size="14" fill="#2b2b2b">Admin</text>
+
+    <!-- process 0 (circle) -->
+    <circle cx="600" cy="214" r="100" fill="#fff" stroke="#78B159" stroke-width="2.6"/>
+    <text x="600" y="198" text-anchor="middle" font-size="18" font-weight="bold" fill="#4E342E">0</text>
+    <text x="600" y="222" text-anchor="middle" font-size="14" fill="#2b2b2b">Study Crossing</text>
+    <text x="600" y="242" text-anchor="middle" font-size="14" fill="#2b2b2b">System</text>
+
+    <!-- Student flows -->
+    <line x1="172" y1="56" x2="515" y2="150" stroke="#4E342E" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="196" y="80" font-size="10.5" fill="#5a4632">login · answers · notes · profile</text>
+    <line x1="512" y1="172" x2="172" y2="78" stroke="#8D6E63" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="196" y="138" font-size="10.5" fill="#8D6E63">quests · grade + bells · history</text>
+
+    <!-- Teacher flows -->
+    <line x1="172" y1="200" x2="500" y2="206" stroke="#4E342E" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="208" y="194" font-size="10.5" fill="#5a4632">login · lesson uploads · class setup</text>
+    <line x1="500" y1="222" x2="172" y2="228" stroke="#8D6E63" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="222" y="244" font-size="10.5" fill="#8D6E63">lesson list · class progress</text>
+
+    <!-- Admin flows -->
+    <line x1="172" y1="346" x2="520" y2="280" stroke="#4E342E" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="196" y="330" font-size="10.5" fill="#5a4632">login · student / teacher / lesson edits</text>
+    <line x1="516" y1="296" x2="172" y2="372" stroke="#8D6E63" stroke-width="1.3" marker-end="url(#m0)"/>
+    <text x="210" y="372" font-size="10.5" fill="#8D6E63">account lists · counts</text>
+  </svg>
+  </div>
+  <div class="caption"><b>Figure 1</b> — Context diagram (Level 0). One process (the whole system), three external entities. Dark arrow = input to system; brown arrow = output back to the entity.</div>
+
+  <p class="note"><b>Planned vs now:</b> the original Level-0 diagram had a <b>single</b> external entity, “Player”, and the
+     system box was labelled “Study Crossing <b>Backend</b> System (REST)”. It is now three entities against one
+     <b>on-device</b> system, because role-based access (content authoring + oversight) was added.</p>
+</section>
+
+<!-- ============ 2 · LEVEL 1 DFD ============ -->
+<section>
+  <h2>2 · Level 1 DFD — System Decomposition <span class="tag">Current · DFD</span></h2>
+  <p class="sub">The system decomposes into <b>nine</b> processes over <b>seven</b> data stores (all real SQLite tables —
+     the quest content now lives in the <code>lessons</code> table too). Because that is large for one frame, the Level-1 DFD is shown in two partitions —
+     <b>2a Learning &amp; Gameplay</b> (the Student) and <b>2b Management &amp; Oversight</b> (Teacher + Admin). Process
+     <b>1.0 Authentication</b> is shared and so appears in both. Same Yourdon–DeMarco key as §1; flow labels are
+     abbreviated — the full store-by-store mapping is in §4.</p>
+
+  <!-- ===== 2a · Learning & Gameplay ===== -->
+  <div class="fig">
+  <svg viewBox="0 0 880 560" width="880" height="560" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+    <defs><marker id="m1a" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#4E342E"/></marker></defs>
+
+    <!-- entity -->
+    <rect x="20" y="248" width="134" height="56" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="87" y="281" text-anchor="middle" font-size="14" fill="#2b2b2b">Student</text>
+
+    <!-- processes (circles) -->
+    <circle cx="430" cy="66" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="430" y="54" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">1.0</text>
+    <text x="430" y="69" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Authentication</text>
+    <text x="430" y="82" text-anchor="middle" font-size="9.5" fill="#2b2b2b">&amp; Register</text>
+
+    <circle cx="430" cy="180" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="430" y="174" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">2.0</text>
+    <text x="430" y="190" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Quest Delivery</text>
+
+    <circle cx="430" cy="294" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="430" y="282" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">3.0</text>
+    <text x="430" y="298" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Answer</text>
+    <text x="430" y="311" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Validation</text>
+
+    <circle cx="430" cy="408" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="430" y="396" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">4.0</text>
+    <text x="430" y="412" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Progress</text>
+    <text x="430" y="425" text-anchor="middle" font-size="9.5" fill="#2b2b2b">&amp; Reward</text>
+
+    <circle cx="430" cy="512" r="44" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="430" y="502" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">5.0</text>
+    <text x="430" y="518" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Notes Mgmt</text>
+
+    <!-- data stores (two parallel lines) -->
+    <line x1="648" y1="56" x2="846" y2="56" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="648" y1="80" x2="846" y2="80" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="656" y="73" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D1</tspan>  students</text>
+
+    <line x1="648" y1="200" x2="846" y2="200" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="648" y1="224" x2="846" y2="224" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="656" y="217" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D4</tspan>  lessons</text>
+
+    <line x1="648" y1="360" x2="846" y2="360" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="648" y1="384" x2="846" y2="384" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="656" y="377" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D6</tspan>  sessions</text>
+
+    <line x1="648" y1="408" x2="846" y2="408" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="648" y1="432" x2="846" y2="432" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="656" y="425" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D5</tspan>  progress</text>
+
+    <line x1="648" y1="500" x2="846" y2="500" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="648" y1="524" x2="846" y2="524" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="656" y="517" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D7</tspan>  notes</text>
+
+    <!-- flows: entity <-> processes -->
+    <line x1="154" y1="258" x2="386" y2="86"  stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="176" y="150" font-size="9.5" fill="#5a4632">credentials</text>
+    <line x1="154" y1="268" x2="384" y2="182" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="172" y="220" font-size="9.5" fill="#5a4632">pick subject</text>
+    <line x1="384" y1="170" x2="154" y2="276" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="250" y="200" font-size="9.5" fill="#8D6E63">quest data</text>
+    <line x1="154" y1="284" x2="384" y2="300" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="196" y="304" font-size="9.5" fill="#5a4632">answer</text>
+    <line x1="384" y1="288" x2="154" y2="292" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="214" y="282" font-size="9.5" fill="#8D6E63">correct / wrong</text>
+    <line x1="154" y1="300" x2="388" y2="500" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="172" y="434" font-size="9.5" fill="#5a4632">note text</text>
+    <line x1="386" y1="420" x2="154" y2="302" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="250" y="376" font-size="9.5" fill="#8D6E63">grade + bells</text>
+
+    <!-- flows: process <-> store -->
+    <line x1="476" y1="66"  x2="648" y2="68"  stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="498" y="60" font-size="9.5" fill="#5a4632">verify / register</text>
+    <line x1="648" y1="208" x2="478" y2="186" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="500" y="166" font-size="9.5" fill="#8D6E63">quest def</text>
+    <line x1="648" y1="296" x2="476" y2="300" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="500" y="290" font-size="9.5" fill="#8D6E63">answer key</text>
+    <path d="M648,420 L600,420 L600,196 L478,196" fill="none" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="556" y="256" font-size="9.5" fill="#8D6E63">done-state</text>
+    <line x1="430" y1="340" x2="430" y2="362" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="436" y="356" font-size="9.5" fill="#5a4632">outcome</text>
+    <line x1="476" y1="400" x2="648" y2="376" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="498" y="392" font-size="9.5" fill="#5a4632">write session</text>
+    <line x1="476" y1="416" x2="648" y2="420" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="498" y="438" font-size="9.5" fill="#5a4632">mark done</text>
+    <path d="M476,422 L560,422 L560,72 L648,76" fill="none" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="566" y="300" font-size="9.5" fill="#5a4632">add coins</text>
+    <line x1="474" y1="512" x2="648" y2="512" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1a)"/>
+    <text x="498" y="506" font-size="9.5" fill="#5a4632">read / write note</text>
+  </svg>
+  </div>
+  <div class="caption"><b>Figure 2a</b> — Level 1 DFD · <b>Learning &amp; Gameplay</b> partition (Student). Process 3.0 passes the quest outcome to 4.0, which writes the session, marks the quest done and credits coins.</div>
+
+  <!-- ===== 2b · Management & Oversight ===== -->
+  <div class="fig">
+  <svg viewBox="0 0 880 640" width="880" height="640" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+    <defs><marker id="m1b" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto"><polygon points="0 0,9 3.5,0 7" fill="#4E342E"/></marker></defs>
+
+    <!-- entities -->
+    <rect x="20" y="120" width="134" height="54" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="87" y="152" text-anchor="middle" font-size="14" fill="#2b2b2b">Admin</text>
+    <rect x="20" y="470" width="134" height="54" fill="#fff" stroke="#4E342E" stroke-width="1.6"/>
+    <text x="87" y="502" text-anchor="middle" font-size="14" fill="#2b2b2b">Teacher</text>
+
+    <!-- processes (circles) -->
+    <circle cx="440" cy="70" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="440" y="64" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">1.0</text>
+    <text x="440" y="80" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Authentication</text>
+
+    <circle cx="440" cy="185" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="440" y="179" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">7.0</text>
+    <text x="440" y="195" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Staff Mgmt</text>
+
+    <circle cx="440" cy="305" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="440" y="299" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">6.0</text>
+    <text x="440" y="315" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Student Acct</text>
+
+    <circle cx="440" cy="425" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="440" y="419" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">8.0</text>
+    <text x="440" y="435" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Lesson Mgmt</text>
+
+    <circle cx="440" cy="550" r="46" fill="#fff" stroke="#78B159" stroke-width="2.3"/>
+    <text x="440" y="538" text-anchor="middle" font-size="12" font-weight="bold" fill="#4E342E">9.0</text>
+    <text x="440" y="554" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Class &amp;</text>
+    <text x="440" y="567" text-anchor="middle" font-size="9.5" fill="#2b2b2b">Progress</text>
+
+    <!-- data stores -->
+    <line x1="660" y1="60" x2="852" y2="60" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="84" x2="852" y2="84" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="77" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D2</tspan>  staff</text>
+
+    <line x1="660" y1="296" x2="852" y2="296" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="320" x2="852" y2="320" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="313" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D1</tspan>  students</text>
+
+    <line x1="660" y1="352" x2="852" y2="352" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="376" x2="852" y2="376" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="369" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D3</tspan>  classes</text>
+
+    <line x1="660" y1="416" x2="852" y2="416" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="440" x2="852" y2="440" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="433" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D4</tspan>  lessons</text>
+
+    <line x1="660" y1="520" x2="852" y2="520" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="544" x2="852" y2="544" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="537" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D5</tspan>  progress</text>
+
+    <line x1="660" y1="560" x2="852" y2="560" stroke="#4E342E" stroke-width="1.5"/>
+    <line x1="660" y1="584" x2="852" y2="584" stroke="#4E342E" stroke-width="1.5"/>
+    <text x="668" y="577" font-size="11" fill="#2b2b2b"><tspan font-weight="bold">D6</tspan>  sessions</text>
+
+    <!-- entity -> process -->
+    <line x1="154" y1="134" x2="396" y2="82"  stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="200" y="104" font-size="9.5" fill="#5a4632">credentials</text>
+    <path d="M154,484 L186,484 L186,90 L394,80" fill="none" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="192" y="300" font-size="9.5" fill="#5a4632">credentials</text>
+    <line x1="154" y1="142" x2="396" y2="182" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="196" y="166" font-size="9.5" fill="#5a4632">add / remove teacher</text>
+    <line x1="154" y1="150" x2="396" y2="300" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="196" y="240" font-size="9.5" fill="#5a4632">student CRUD</text>
+    <line x1="154" y1="160" x2="396" y2="420" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="200" y="360" font-size="9.5" fill="#5a4632">lesson CRUD</text>
+    <line x1="154" y1="486" x2="396" y2="432" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="210" y="452" font-size="9.5" fill="#5a4632">lesson CRUD</text>
+    <line x1="154" y1="500" x2="396" y2="548" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="196" y="528" font-size="9.5" fill="#5a4632">create class / assign</text>
+    <line x1="396" y1="556" x2="154" y2="508" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="200" y="556" font-size="9.5" fill="#8D6E63">class progress report</text>
+
+    <!-- process -> store -->
+    <line x1="486" y1="70"  x2="660" y2="72"  stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="508" y="64" font-size="9.5" fill="#5a4632">verify staff</text>
+    <line x1="486" y1="182" x2="660" y2="84"  stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="508" y="150" font-size="9.5" fill="#5a4632">insert / delete</text>
+    <line x1="486" y1="305" x2="660" y2="308" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="508" y="298" font-size="9.5" fill="#5a4632">insert / update / delete</text>
+    <line x1="486" y1="316" x2="660" y2="366" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="520" y="344" font-size="9.5" fill="#5a4632">assign form</text>
+    <line x1="486" y1="425" x2="660" y2="430" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="508" y="418" font-size="9.5" fill="#5a4632">insert / update / delete</text>
+    <line x1="486" y1="540" x2="660" y2="372" stroke="#4E342E" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="520" y="470" font-size="9.5" fill="#5a4632">read / write</text>
+    <path d="M660,314 L614,314 L614,556 L486,556" fill="none" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="592" y="470" font-size="9.5" fill="#8D6E63">roster</text>
+    <line x1="660" y1="532" x2="486" y2="544" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="556" y="528" font-size="9.5" fill="#8D6E63">progress</text>
+    <line x1="660" y1="572" x2="486" y2="556" stroke="#8D6E63" stroke-width="1.2" marker-end="url(#m1b)"/>
+    <text x="556" y="588" font-size="9.5" fill="#8D6E63">sessions</text>
+  </svg>
+  </div>
+  <div class="caption"><b>Figure 2b</b> — Level 1 DFD · <b>Management &amp; Oversight</b> partition (Admin + Teacher). Lesson management (8.0) is shared by both roles; class monitoring (9.0) reads the student, progress and session stores to build a teacher's class report.</div>
+
+  <p class="note"><b>Quest content now lives in the <code>lessons</code> table (D4).</b> The quests students play are no
+     longer a hard-coded in-memory pool — <code>IslandDataStore.buildQuestPool()</code> reads the <code>lessons</code> rows
+     and rebuilds the quests on each access, and the <code>game_type</code> column decides which mini-game each row becomes.
+     So <b>2.0 Quest Delivery</b> and <b>3.0 Answer Validation</b> read from D4 — the same store <b>8.0 Lesson Management</b>
+     writes — which is exactly why editing a lesson changes what students play.</p>
+
+  <p class="note"><b>The DFD stores now match the ERD one-to-one.</b> There is no longer an in-memory "quest pool" sitting
+     outside the database, so all <b>seven</b> DFD data stores (<code>students · staff · classes · lessons · progress ·
+     sessions · notes</code>) are real tables, and <code>quest_id</code> in D5 / D7 is now a real reference to
+     <code>lessons.id</code> rather than a soft in-app id.</p>
+</section>
+
+<!-- ============ 3 · DETAILED EXPLANATION ============ -->
+<section>
+  <h2>3 · Detailed Explanation <span class="tag">Narrative</span></h2>
+
+  <h3 class="sub-h">3.1 · Reading the current DFD</h3>
+
+  <p class="sub">At the context level (Figure 1) the whole application is treated as a single process — process 0,
+     “Study Crossing System” — surrounded by the three people who use it: the Student, the Teacher and the Admin. Every
+     arrow that crosses the system boundary is a packet of data. The Student sends in credentials, submitted answers,
+     lesson notes and profile edits, and receives quests, grades, bell payouts and history back. The Teacher sends in
+     lesson uploads and class setup and receives lesson lists and class-progress reports. The Admin sends in account and
+     lesson edits and receives the management lists and counts. The context diagram deliberately hides all internal
+     storage; it only answers the question “who talks to the system, and what data passes between them?”.</p>
+
+  <p class="sub">The Level-1 diagram then lifts the lid on process 0 and shows the nine internal processes and the eight
+     data stores they read and write. Because nine processes in one frame would be unreadable, the decomposition is drawn
+     as two partitions that follow the natural split in the app: Figure 2a covers everything a <b>Student</b> does while
+     learning, and Figure 2b covers everything a <b>Teacher</b> or <b>Admin</b> does while managing the system. Process
+     1.0 (Authentication) is the one process common to all three roles, so it appears at the top of both partitions.</p>
+
+  <p class="sub">In the learning partition (Figure 2a) the flow is a clean pipeline. Process <b>1.0</b> checks the
+     student’s credentials against the <code>students</code> store (D1) — or inserts a new row when registering. Once in,
+     process <b>2.0 Quest Delivery</b> reads a quest definition from the <code>lessons</code> store (D4) and the student’s
+     completion flags from <code>progress</code> (D5), and hands the assembled lesson + game configuration back to the
+     student. When the student answers, process <b>3.0 Answer Validation</b> fetches the correct key independently from
+     D4 — it never trusts the answer the client claims is right — and returns a correct/wrong verdict plus the remaining
+     apples. On a win or a final miss it passes a quest-outcome packet to process <b>4.0 Progress &amp; Reward</b>, which
+     is the only writer of results: it appends a row to <code>sessions</code> (D6), sets the done flag in
+     <code>progress</code> (D5), adds the earned bells to the student’s balance in <code>students</code> (D1), and returns
+     the grade. Separately, process <b>5.0 Notes Management</b> reads and writes the student’s private annotations in
+     <code>notes</code> (D7). The shapes carry the meaning: circles are work the system <em>does</em>, the paired lines
+     are data sitting <em>at rest</em>, and the labelled arrows are data <em>in motion</em> between them.</p>
+
+  <p class="sub">In the management partition (Figure 2b) the same process 1.0 now validates Teacher and Admin logins
+     against the <code>staff</code> store (D2). The Admin drives three CRUD processes: <b>6.0 Student Account Management</b>
+     writes the <code>students</code> store (D1) and assigns a class value into <code>classes</code> (D3); <b>7.0 Staff
+     Management</b> inserts and deletes teacher accounts in <code>staff</code> (D2); and <b>8.0 Lesson Management</b>
+     maintains the <code>lessons</code> store (D4). Process 8.0 is shared — a Teacher reaches the very same process to
+     upload and edit lessons, which is why two entities point at it. Finally, <b>9.0 Class &amp; Progress Monitoring</b>
+     lets the Teacher create classes and assign students in <code>classes</code> (D3), and — crucially — it <em>reads</em>
+     three stores at once (<code>students</code>, <code>progress</code>, <code>sessions</code>) to compose the read-only
+     class-progress report it sends back to the Teacher. That single process is where the learning side and the
+     management side of the data finally meet.</p>
+
+  <p class="sub">Notice that <b>D4 (<code>lessons</code>)</b> appears in <em>both</em> partitions: the Admin/Teacher write
+     it through 8.0 in Figure 2b, and the Student reads it through 2.0 / 3.0 in Figure 2a. That shared store is the whole
+     point of the redesign — the same table staff edit is the table the gameplay is built from. All seven stores are real
+     database tables, so they map one-to-one onto the seven ERD entities.</p>
+
+  <h3 class="sub-h">3.2 · How this differs from the previous DFD</h3>
+
+  <p class="sub">The most fundamental difference is what the diagram is <em>about</em>. The DFD in the original
+     Software Engineering Report was explicitly <b>hypothetical</b>: the app of that era had no database at all, so the
+     report drew an imagined future in which a remote REST backend would one day serve a single player. The diagram on
+     this page is the opposite — it documents the system that was actually built and shipped, backed by a <b>real,
+     on-device SQLite database</b>. The earlier DFD described software that did not exist yet; this one describes software
+     that does.</p>
+
+  <p class="sub">From that one change everything else follows. The original context diagram had a <b>single external
+     entity</b> called “Player”, because there was only ever one kind of user. The current context diagram has <b>three</b>
+     — Student, Teacher and Admin — because the app grew a content-authoring side (teachers upload lessons and watch class
+     progress) and an administration side (the admin manages every account). A single-player model simply had nowhere to
+     put those responsibilities, so new entities had to appear.</p>
+
+  <p class="sub">The process count rose from <b>three to nine</b> for the same reason: each new capability is a new data
+     transformation. The original three processes — quest delivery, answer validation, and progress recording — all
+     survive, almost unchanged, as processes 2.0, 3.0 and 4.0. Around them the build added six more: authentication
+     (1.0), notes management (5.0), student account management (6.0), staff management (7.0), lesson management (8.0) and
+     class/progress monitoring (9.0). None of these existed in the planned diagram because none of those features existed
+     in the planned app.</p>
+
+  <p class="sub">The data stores tell the rest of the story. The old DFD had only <b>two</b>: D1 “Quest Bank” and D2
+     “Session History”. The new DFD has <b>seven</b> — students, staff, classes, lessons, progress, sessions and notes —
+     one per real SQLite table. Notably, the quest content ended up back <em>inside</em> the database, close to the
+     original plan's “Quest Bank” intent: the <code>lessons</code> table is now the single source the gameplay quests are
+     built from, so the same rows admins and teachers edit are the rows students play. (An earlier build had kept the
+     quests as a hard-coded in-memory pool; folding them into the <code>lessons</code> table is what lets the content be
+     edited without touching code.)</p>
+
+  <p class="sub">Two further differences are worth naming. First, <b>authentication did not exist</b> in the planned
+     design at all — the old report says so in plain words — whereas it is now process 1.0 and the gatekeeper for the
+     whole system; the student id it returns becomes the filter that scopes every later per-student read and write.
+     Second, the <b>notation itself changed</b>: the original report drew its DFD in Gane &amp; Sarson symbols
+     (rounded-rectangle processes, open-ended rectangle stores), while this redraw uses the Yourdon–DeMarco standard
+     (circular processes, paired-line stores). That last change is purely cosmetic — it does not alter any data flow —
+     but it is the most immediately visible difference between the two documents.</p>
+
+  <p class="sub">In short, the diagram grew from a <b>1-entity, 3-process, 2-store</b> sketch of an imagined backend into
+     a <b>3-entity, 9-process, 7-store</b> model of a working, role-based, database-backed application. The itemised,
+     row-by-row version of this same comparison — with the “why” for each line — is given in the table in §5.</p>
+</section>
+
+<!-- ============ 4 · PROCESS → CODE MAP ============ -->
+<section>
+  <h2>4 · Process → Code Mapping <span class="tag">Reference</span></h2>
+  <p class="sub">Each Level-1 process and the Kotlin classes that perform it today.</p>
+  <table class="dict">
+    <tr><th>Process</th><th>Driven by (UI)</th><th>Through (facade)</th><th>Stores touched</th></tr>
+    <tr><td><b>1.0</b> Authentication &amp; Registration</td><td>LoginActivity · RegisterActivity</td><td>AdminDataStore.<code>loginStudent</code> / <code>loginStaff</code> / <code>registerStudent</code></td><td>D1 students · D2 staff</td></tr>
+    <tr><td><b>2.0</b> Quest Delivery</td><td>MainActivity · QuestArchiveActivity · StudyActivity · TopFragment</td><td>IslandDataStore.<code>getQuestion</code> / <code>buildTaskList</code> / <code>getQuestsBySubject</code></td><td>D4 lessons · D5 progress</td></tr>
+    <tr><td><b>3.0</b> Answer Validation</td><td>BottomFragment (4 mini-games)</td><td>in-fragment check vs quest answer key</td><td>D4 lessons</td></tr>
+    <tr><td><b>4.0</b> Progress &amp; Reward</td><td>RewardActivity</td><td>IslandDataStore.<code>recordSession</code> / <code>markDone</code> → AdminDataStore.<code>addCoins</code></td><td>D6 sessions · D5 progress · D1 students</td></tr>
+    <tr><td><b>5.0</b> Notes Management</td><td>LessonNoteActivity</td><td>IslandDataStore.<code>getNote</code> / <code>setNote</code> / <code>deleteNote</code></td><td>D7 notes</td></tr>
+    <tr><td><b>6.0</b> Student Account Mgmt</td><td>AdminStudentsActivity · AdminEditStudentActivity</td><td>AdminDataStore.<code>addStudent</code> / <code>updateStudent</code> / <code>deleteStudent</code> / <code>assignStudentToClass</code></td><td>D1 students · D3 classes</td></tr>
+    <tr><td><b>7.0</b> Staff Management</td><td>AdminTeachersActivity</td><td>AdminDataStore.<code>addTeacher</code> / <code>deleteTeacher</code> / <code>getAllTeachers</code></td><td>D2 staff</td></tr>
+    <tr><td><b>8.0</b> Lesson Management</td><td>AdminLessonsActivity · AdminEditLessonActivity <i>(admin + teacher)</i></td><td>AdminDataStore.<code>addLesson</code> / <code>updateLesson</code> / <code>deleteLesson</code></td><td>D4 lessons</td></tr>
+    <tr><td><b>9.0</b> Class &amp; Progress Monitoring</td><td>TeacherClassesActivity · TeacherClassStudentsActivity</td><td>AdminDataStore.<code>addClass</code> / <code>getStudentsByClass</code> + IslandDataStore progress</td><td>D3 classes · D1 students · D5 progress · D6 sessions</td></tr>
+  </table>
+</section>
+
+<!-- ============ 5 · PLANNED vs BUILT ============ -->
+<section>
+  <h2>5 · Planned vs Built — what changed &amp; why <span class="tag">Comparison</span></h2>
+  <p class="sub">Side-by-side of the original Software Engineering Report (May 2026) and the current build, with the
+     reason for each change.</p>
+
+  <table class="dict">
+    <tr><th>Aspect</th><th>Originally planned</th><th>Current build</th><th>Why it changed</th></tr>
+
+    <tr>
+      <td><b>Persistence</b></td>
+      <td>No database. In-memory <code>MockQuestRepository</code>. DFD was an <i>imagined future</i> backend.</td>
+      <td>Real <b>local SQLite</b> — <code>StudyCrossing.db</code>, 7 tables via <code>DatabaseHelper</code> + 2 facades.</td>
+      <td class="why">Data must survive restarts and be per-user (coins, progress, notes). The report itself named <code>QuestRepository</code> as the “swap point”; that seam was used to drop in a real store.</td>
+    </tr>
+
+    <tr>
+      <td><b>Backend style</b></td>
+      <td>Hypothetical <b>remote REST</b> server + remote DB.</td>
+      <td><b>On-device</b> relational DB (SQLite); no network.</td>
+      <td class="why">It is a standalone classroom Android app — no server / hosting to run. SQLite gives real persistence, CRUD and table relationships locally, satisfying the requirement without infrastructure.</td>
+    </tr>
+
+    <tr>
+      <td><b>External entities</b></td>
+      <td><b>1</b> — Player.</td>
+      <td><b>3</b> — Student, Teacher, Admin.</td>
+      <td class="why">A single-player model cannot author content or supervise learners. Teachers were added to upload lessons &amp; watch class progress; an Admin to manage all accounts.</td>
+    </tr>
+
+    <tr>
+      <td><b>Authentication</b></td>
+      <td>None (“no login system”).</td>
+      <td>Login + Register; role routing; validated against <code>students</code> / <code>staff</code> tables.</td>
+      <td class="why">Multiple roles need identity + access control, and per-student data needs a logged-in id (<code>currentStudentId</code>) to scope every query.</td>
+    </tr>
+
+    <tr>
+      <td><b>Data stores</b></td>
+      <td><b>2</b> — D1 Quest Bank, D2 Session History.</td>
+      <td><b>7</b> — students, staff, classes, lessons, progress, sessions, notes (all real tables).</td>
+      <td class="why">New entities appeared (staff, classes, per-student progress / sessions / notes), and the quest content folded into the <code>lessons</code> table instead of a separate store.</td>
+    </tr>
+
+    <tr>
+      <td><b>Quest data location</b></td>
+      <td>Inside the DB (D1 Quest Bank).</td>
+      <td>Inside the DB — the <code>lessons</code> table, built into quests at runtime.</td>
+      <td class="why">So admins/teachers can edit the actual gameplay content. A <code>game_type</code> column says which mini-game each row becomes; drawable/video resources are referenced by id, and <code>quest_id</code> in progress/notes is now a real reference to <code>lessons.id</code>.</td>
+    </tr>
+
+    <tr>
+      <td><b>Processes</b></td>
+      <td><b>3</b> — quest delivery, answer validation, progress.</td>
+      <td><b>9</b> — the original 3 + auth, notes, student mgmt, staff mgmt, lesson mgmt, class/progress monitoring.</td>
+      <td class="why">Every new role capability is a new data transform, so the DFD gained one process per capability.</td>
+    </tr>
+
+    <tr>
+      <td><b>Lesson content</b></td>
+      <td>Hard-coded in the quest definitions.</td>
+      <td>CRUD via the <code>lessons</code> table + device <b>image upload</b>.</td>
+      <td class="why">Content has to be editable by non-developers (teachers/admin), which is the whole point of an authoring screen.</td>
+    </tr>
+
+    <tr>
+      <td><b>Quests</b></td>
+      <td>8 quests.</td>
+      <td>14 quests.</td>
+      <td class="why">Content was expanded (Malaysia-school themed quests, wider subject coverage).</td>
+    </tr>
+
+    <tr>
+      <td><b>Screens (Activities)</b></td>
+      <td>12 Activities, 2 Fragments.</td>
+      <td>21 Activities, 2 Fragments.</td>
+      <td class="why">Added Login, Register, Admin (×6 screens), Teacher (×3 screens) and a student Lesson-Note screen.</td>
+    </tr>
+
+    <tr>
+      <td><b>Student notes</b></td>
+      <td>Not in the plan.</td>
+      <td><code>notes</code> table + LessonNoteActivity.</td>
+      <td class="why">Added a personal study-notes feature so students can annotate lessons they have played.</td>
+    </tr>
+  </table>
+
+  <h3 class="sub-h">The one-line story</h3>
+  <p class="sub">The plan was a <b>single-player, no-database</b> app whose DFD merely <i>imagined</i> a future remote backend.
+     The build turned that imagined backend into a <b>real on-device SQLite database</b> and grew the app from one user into a
+     <b>three-role system</b> (students play; teachers author lessons &amp; monitor classes; an admin manages all accounts).
+     Every extra process and data store in the new DFD exists to serve one of those three roles — which is exactly why the
+     original 1-entity / 3-process / 2-store diagram had to be redrawn as a 3-entity / 9-process / 7-store one.</p>
+</section>
+
+<footer class="wrap">Study Crossing · Data Flow Diagram (current) vs original Software Engineering Report plan · StudyCrossing.db schema v2</footer>
+
+</body>
+</html>

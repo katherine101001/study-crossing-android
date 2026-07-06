@@ -13,7 +13,7 @@ import com.example.assignment1.data.model.Subject
 
 // DatabaseHelper - 全app的SQLite数据库, 以前的in-memory数据全部搬来这里
 // 6张表: 学生 students / 班级 classes / 学习资料 lessons / 完成记录 progress / session记录 / 笔记 notes
-// 跟着CLAUDE.md的规矩写: companion放常量, SQL keyword大写, 每个function本地拿connection, 手动close cursor
+// companion放常量, SQL keyword大写, 每个function本地拿connection, 手动close cursor
 class DatabaseHelper(private val context: Context) :
     SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 

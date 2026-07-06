@@ -14,7 +14,7 @@ Study Crossing is a **gamified learning platform** built as a native Android app
 
 ```
 ┌──────────────────────────────────────────────────────────┐
-│                   Android App Architecture                 │
+│                   Android App Architecture               │
 ├────────────┬─────────────┬──────────────┬────────────────┤
 │  Activity  │  Adapter    │  Data Layer  │  Services      │
 │  Layer     │  Layer      │              │                │

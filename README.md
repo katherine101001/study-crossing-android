@@ -177,6 +177,12 @@ study-crossing-android/
 
 ---
 
+## 🎥 Demo Video
+
+🔗 **[Watch Demo (Google Drive)](https://drive.google.com/drive/folders/13CheMPt1-2ONk62PxLU8EUoKi822PbTU?usp=sharing)**
+
+---
+
 ## 🚀 Getting Started
 
 ```bash
